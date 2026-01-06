@@ -4,7 +4,7 @@ import { events } from '@/lib/constants'
 
 
 
-function Page() {
+const Page = async () => {
   return (
     <section>
       <h1 className="text-center">The Hub For Every Dev <br/>  Event You Can't Miss</h1>
