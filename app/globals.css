@@ -245,6 +245,10 @@
     .flex-row-gap-2 {
       @apply flex flex-row gap-2;
     }
+
+    .event-detail-item {
+      @apply flex items-center gap-2;
+    }
   }
 
   .pill {
