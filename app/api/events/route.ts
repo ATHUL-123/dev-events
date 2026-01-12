@@ -14,6 +14,11 @@ export async function POST(req: Request) {
     if(!file){
         return NextResponse.json( {message: 'Image file is required'}, {status:400})
     }
+    
+    let tags = JSON.parse(formData.get('tags') as string);
+    let agenda = JSON.parse(formData.get('agenda') as string);
+
+
     const arrayBufer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBufer)
     
@@ -26,7 +31,11 @@ export async function POST(req: Request) {
 
     eventData.image = (uploadResult as {secure_url : string }).secure_url;
 
-    const newEvent = new Event(eventData);
+    const newEvent = new Event({
+      ...eventData,
+      tags:tags,
+      agenda:agenda
+   });
     await newEvent.save();
 
     return NextResponse.json(newEvent, { status: 201 });
